@@ -1,7 +1,8 @@
 package delegation
 
-interface Cricket{
+interface Cricket {
     fun doScore()
+
     fun takeWickets()
 }
 
@@ -13,13 +14,10 @@ open class OneDayCricket : Cricket {
     override fun takeWickets() = println("5 wicket haul in one day cricket are great milestone")
 }
 
-
 class FiveDayCricket : Cricket {
     override fun doScore() = println("score of 150s and 200s in five day cricket are great milestone")
 
     override fun takeWickets() = println("10 wicket haul in five day cricket are great milestone")
-
-
 }
 
 /**
@@ -30,7 +28,7 @@ class FiveDayCricket : Cricket {
  * Let's use inheritance to solve this which is a common approach where we can inherit WorldCupTournament from OneDayCricket.
  * First we need to make OneDayCricket open
 */
-class WorldCupTournament: OneDayCricket()
+class WorldCupTournament : OneDayCricket()
 
 fun main() {
     val worldCupTournament = WorldCupTournament()
@@ -40,21 +38,21 @@ fun main() {
      * This has cons as WorldCupTournament is tied only to OneDayCricket and can't be used for FiveDayCricket. This is the consequence of inheritance.
      * Also, there is a substitutability problem where we didn't mean to have WorldCupTournament as kind of OneDayCricket, but sadly it is implied from inheritance.
      */
-    val oneDayCricket : OneDayCricket = worldCupTournament //substitutability problem
+    val oneDayCricket: OneDayCricket = worldCupTournament // substitutability problem
 }
 
 /**
  * Delegation Using By
  */
 
-class WorldCupSeries: Cricket by OneDayCricket()
+class WorldCupSeries : Cricket by OneDayCricket()
 
 fun main(args: Array<String>) {
     val worldCupSeries = WorldCupSeries()
     println("inside world cup series")
     worldCupSeries.doScore()
     worldCupSeries.takeWickets()
-    //val oneDayCricket: OneDayCricket = worldCupSeries //Assignment of instance of WorldCupSeries is not possible to a reference of type OneDayCricket
+    // val oneDayCricket: OneDayCricket = worldCupSeries //Assignment of instance of WorldCupSeries is not possible to a reference of type OneDayCricket
 }
 
 /**
