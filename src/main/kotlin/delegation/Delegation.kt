@@ -35,14 +35,14 @@ fun main() {
     worldCupTournament.doScore()
     worldCupTournament.takeWickets()
     /**
-     * This has cons as WorldCupTournament is tied only to OneDayCricket and can't be used for FiveDayCricket. This is the consequence of inheritance.
+     * This has cons as WorldCupTournament is stuck to OneDayCricket class and can't be used for FiveDayCricket class. This is the consequence of inheritance.
      * Also, there is a substitutability problem where we didn't mean to have WorldCupTournament as kind of OneDayCricket, but sadly it is implied from inheritance.
      */
     val oneDayCricket: OneDayCricket = worldCupTournament // substitutability problem
 }
 
 /**
- * Delegation Using By
+ * Delegation Using By keyword
  */
 
 class WorldCupSeries : Cricket by OneDayCricket()
@@ -52,13 +52,13 @@ fun main(args: Array<String>) {
     println("inside world cup series")
     worldCupSeries.doScore()
     worldCupSeries.takeWickets()
-    // val oneDayCricket: OneDayCricket = worldCupSeries //Assignment of instance of WorldCupSeries is not possible to a reference of type OneDayCricket
+    // val oneDayCricket: OneDayCricket = worldCupSeries --> Assignment of instance of WorldCupSeries is not possible to a reference of type OneDayCricket
 }
 
 /**
- * In the case of kotlin delegation , calls to methods like doScore() weren't implemented in WorldCupSeries, instead they were sent
+ * In the case of inheritance , calls to methods like doScore() weren't implemented in WorldCupTournament, instead they were sent
  * to the baseClass OneDayCricket or FiveDayCricket. In the case of delegation, compiler creates methods with the WorldCupSeries
- * and does the routing. In effect, when we can worldCupSeries.doScore() we are calling the mentionedd doScore() inside WorldCupSwries.
+ * and does the routing. In effect, when we can worldCupSeries.doScore() we are calling the mentioned doScore() inside WorldCupSeries.
  * Kotlin Compiler routes the call to the delegate which is the instance of OneDayCricket
  *
  * In summary
